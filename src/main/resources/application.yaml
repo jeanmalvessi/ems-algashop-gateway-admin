@@ -10,7 +10,7 @@ spring:
     name: gateway-admin
   data:
     redis:
-      host: localhost
+      host: algashop-redis
       port: 6379
       password: algashop
       database: 3
