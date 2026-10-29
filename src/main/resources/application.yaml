@@ -128,14 +128,19 @@ management:
     gateway:
       enabled: true
 
-resilience4j.circuitbreaker:
-  instances:
-    ordering-route-cb:
-      slidingWindowSize: 8 # total calls to analyze
-      failureRateThreshold: 50 # 50%
-      minimumNumberOfCalls: 5 # minimum number of failures to calculate if its failing
-      permittedNumberOfCallsInHalfOpenState: 5
-      slidingWindowType: COUNT_BASED # / TIME_BASED
-      waitDurationInOpenState: 10s
-      maxWaitDurationInHalfOpenState: 30s
-      registerHealthIndicator: true # enable circuitbreakers health check
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeoutDuration: 60s
+  circuitbreaker:
+    instances:
+      ordering-route-cb:
+        slidingWindowSize: 8 # total calls to analyze
+        failureRateThreshold: 50 # 50%
+        minimumNumberOfCalls: 5 # minimum number of failures to calculate if its failing
+        permittedNumberOfCallsInHalfOpenState: 5
+        slidingWindowType: COUNT_BASED # / TIME_BASED
+        waitDurationInOpenState: 10s
+        maxWaitDurationInHalfOpenState: 30s
+        registerHealthIndicator: true # enable circuitbreakers health check
